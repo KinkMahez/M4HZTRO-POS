@@ -1,0 +1,769 @@
+:root {
+  --red: #d9202a;
+  --red-light: #ff4d4d;
+  --red-dim: rgba(217, 32, 42, 0.1);
+  --red-glow: rgba(217, 32, 42, 0.3);
+  --green: #22c55e;
+  --muted: #ffffff99;
+  --muted2: #ffffffcc;
+  --white: #ffffff;
+  --gold-dim: rgba(251, 191, 36, 0.1);
+  --gold-dark: rgba(245, 158, 11, 0.5);
+  --surface3: rgba(30, 30, 30, 0.5);
+  --border: rgba(255, 255, 255, 0.1);
+  --font-mono: "SF Mono", "SF Mono Regular", Consolas, "Liberation Mono",
+    Menlo, Courier, monospace;
+  --radius: 12px;
+  --radius-sm: 6px;}
+/* =============================================
+   AURORA MESH BACKGROUND
+   ============================================= */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  /* Base dark — penting agar glass terlihat */
+}
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  will-change: transform;
+}
+
+/* Merah utama — kanan atas */
+.orb1 {
+  width: 70vw;
+  height: 70vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(
+    circle, 
+    rgba(175, 62, 71, 0.64) 0%,
+    rgba(184, 44, 54, 0.4) 50%,
+    transparent 50%
+  );
+  top: -50%;
+  right: -15%;
+  animation: orbFloat1 12s ease-in-out infinite alternate;
+}
+
+/* Merah muda / magenta — kiri tengah */
+.orb2 {
+  width: 55vw;
+  height: 55vw;
+  max-width: 550px;
+  max-height: 550px;
+  background: radial-gradient(
+    circle,
+    rgba(180, 0, 80, 0.7) 0%,
+    rgba(120, 0, 60, 0.3) 55%,
+    transparent 70%
+  );
+  top: 20%;
+  left: -10%;
+  animation: orbFloat2 15s ease-in-out infinite alternate;
+}
+
+/* Deep red / crimson — bawah kanan */
+.orb3 {
+  width: 60vw;
+  height: 60vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(160, 15, 25, 0.8) 0%,
+    rgba(100, 5, 15, 0.35) 50%,
+    transparent 70%
+  );
+  bottom: -20%;
+  right: 10%;
+  animation: orbFloat3 18s ease-in-out infinite alternate;
+}
+
+/* Aksen — tengah, sangat subtle */
+.orb4 {
+  width: 40vw;
+  height: 40vw;
+  max-width: 400px;
+  max-height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(217, 32, 42, 0.45) 0%,
+    transparent 65%
+  );
+  top: 45%;
+  left: 35%;
+  animation: orbFloat4 10s ease-in-out infinite alternate;
+}
+
+/* Noise grain texture — bikin lebih organik */
+.aurora-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Animasi masing-masing orb ── */
+@keyframes orbFloat1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-5%, 8%) scale(1.08);
+  }
+  66% {
+    transform: translate(8%, 3%) scale(0.95);
+  }
+  100% {
+    transform: translate(-3%, -6%) scale(1.05);
+  }
+}
+@keyframes orbFloat2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, -4%) scale(1.1);
+  }
+  66% {
+    transform: translate(-4%, 7%) scale(0.92);
+  }
+  100% {
+    transform: translate(5%, 5%) scale(1.06);
+  }
+}
+@keyframes orbFloat3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-7%, -3%) scale(1.05);
+  }
+  66% {
+    transform: translate(4%, -8%) scale(1.12);
+  }
+  100% {
+    transform: translate(-5%, 6%) scale(0.96);
+  }
+}
+@keyframes orbFloat4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(4%, -5%) scale(1.15);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-4%, 4%) scale(0.9);
+    opacity: 0.5;
+  }
+}
+/* =============================================
+   MAIN LAYOUT
+   ============================================= */
+.dashboard {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+/* =============================================
+   TOP BAR
+   ============================================= */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.badge-live {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--red-dim);
+  border: 1px solid rgba(217, 32, 42, 0.3);
+  border-radius: 30px;
+  padding: 7px 14px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--red-light);
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.badge-live .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red-light);
+  box-shadow: 0 0 8px var(--red-light);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-new-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 20px 4px 5.5px; 
+  background: var(--red-dim);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(217, 32, 42, 0.4);
+  border-radius: 50px; 
+  color: var(--white);
+  text-decoration: none;
+  font-family: "Jakarta", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(217, 32, 42, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+/* Kotak Icon Plus */
+.btn-new-order .icon-box {
+  width: 33px;
+  height: 33px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.4s;
+  box-shadow: 0 0 10px var(--red-glow);
+}
+.btn-new-order span {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* Hover Effect */
+.btn-new-order:hover {
+  background: var(--red);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px var(--red-glow);
+  border-color: var(--red-light);
+}
+.btn-new-order:hover .icon-box {
+  transform: rotate(90deg);
+  background: var(--white);
+  color: var(--red);
+}
+/* Active / Click Effect */
+.btn-new-order:active {
+  transform: translateY(0) scale(0.98);
+}
+/* Shine Animation */
+.btn-new-order::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.6s;
+}
+.btn-new-order:hover::before {
+  left: 100%;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+/* =============================================
+   STAT CARDS ROW
+   ============================================= */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+/* =============================================
+   REVISED MODERN GLASS CARDS
+   ============================================= */
+.card,
+.stat-card {
+  /* 1. Menaikkan opacity agar lebih terang dari bg utama */
+  background: rgba(34, 34, 34, 0.51) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+  /* 2. Mempertegas border (Gunakan border putih transparan agar 'Pop') */
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+
+  /* 3. Shadow lebih tebal agar card terlihat 'mengambang' */
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1); /* Inner glow di bagian atas */
+
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Hover Effect yang Lebih Catchy */
+.card:hover,
+.stat-card:hover {
+  background: rgba(40, 40, 40, 0.6) !important;
+  transform: translateY(-5px);
+  border-color: rgba(217, 32, 42, 0.6) !important;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(217, 32, 42, 0.15);
+}
+
+/* Khusus Stat Card Accent (Revenue) */
+.stat-card.accent {
+  background: linear-gradient(
+    135deg,
+    rgba(217, 32, 42, 0.2) 0%,
+    rgba(35, 35, 35, 0.5) 100%
+  ) !important;
+  border: 1px solid rgba(217, 32, 42, 0.5) !important;
+}
+
+/* Perbaikan untuk Elemen di Dalam Card agar Lebih 'Pop' */
+.stat-label {
+  color: #ffffffc9;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Inter", sans-serif;
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  color: #ffffffa6;
+  font-family: "Jakarta", sans-serif;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+}
+
+/* Tambahan Efek Refleksi pada Card */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.card:hover::after {
+  left: 125%;
+}
+/* Mempercantik Badge Live */
+.badge-live {
+  background: rgba(217, 32, 42, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(217, 32, 42, 0.4);
+  box-shadow: 0 0 15px rgba(217, 32, 42, 0.1);
+}
+.stat-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+.stat-meta .up {
+  color: var(--green);
+}
+.stat-meta .down {
+  color: var(--red-light);
+}
+.stat-meta .neutral {
+  color: var(--muted);
+  font-family: "Jakarta", sans-serif;
+}
+.stat-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  opacity: 0.095;
+}
+.stat-icon img {
+  width: 35px;
+  height: 35px;
+}
+
+/* =============================================
+   MAIN GRID
+   ============================================= */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* =============================================
+   CHART CARD
+   ============================================= */
+.card {
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  font-family: "Jakarta", sans-serif;
+  color: var(--white);
+}
+.card-sub {
+  font-family: "Jakarta", sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.chip {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted2);
+  letter-spacing: 0.5px;
+}
+.chart-wrap {
+  height: 250px;
+  position: relative;
+}
+
+/* =============================================
+   DONUT CARD
+   ============================================= */
+.donut-wrap {
+  height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.legend-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.legend-label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  color: var(--muted2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.legend-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white);
+}
+
+/* =============================================
+   BOTTOM GRID
+   ============================================= */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* =============================================
+   TABLE
+   ============================================= */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 0 0 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 12px 0;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--muted2);
+  vertical-align: middle;
+}
+.data-table td:first-child {
+  color: var(--white);
+}
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+.data-table tr:hover td {
+  color: var(--white);
+}
+.trx-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--red-light) !important;
+}
+.amount-cell {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white) !important;
+  font-weight: 500;
+}
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.sdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* =============================================
+   TOP PRODUCTS
+   ============================================= */
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.product-item:last-child {
+  border-bottom: none;
+}
+.product-rank {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  background: var(--surface3);
+  display: flex;
+  border: 1px solid var(--border);
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+/* =============================================
+   GOLD GLASSMORPHISM RANK
+   ============================================= */
+.product-rank.top {
+  /* Gradasi Emas Mewah */
+  background: linear-gradient(
+    135deg,
+    var(--gold-dim) 0%,
+    var(--gold-dark) 100%
+  ) !important;
+
+  /* Text warna Amber/Gold */
+  color: #fbbf24 !important;
+
+  /* Border Gold Transparan */
+  border: 1px solid rgba(251, 191, 36, 0.4) !important;
+
+  /* Efek Glow Emas */
+  box-shadow:
+    0 0 15px rgba(245, 158, 11, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(4px);
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efek Kilau (Shine) Statis pada Rank 1 */
+.product-rank.top::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.product-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--muted2);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-bar-wrap {
+  flex: 1;
+  height: 3px;
+  background: var(--surface3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.product-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red) 0%, var(--red-light) 100%);
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-qty {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--white);
+  min-width: 28px;
+  text-align: right;
+}
+
+/* =============================================
+   SCROLL FADE IN
+   ============================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.5s ease forwards;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.delay-1 {
+  animation-delay: 0.05s;
+}
+.delay-2 {
+  animation-delay: 0.1s;
+}
+.delay-3 {
+  animation-delay: 0.15s;
+}
+.delay-4 {
+  animation-delay: 0.2s;
+}
+.delay-5 {
+  animation-delay: 0.3s;
+}
+.delay-6 {
+  animation-delay: 0.4s;
+}
+
+/* =============================================
+   DIVIDER LINE
+   ============================================= */
+.vr {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+}
+.footer-dashboard {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: "Jakarta", sans-serif;
+  margin-top: 1.8rem;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 1100px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 680px) {
+  .dashboard {
+    padding: 20px 16px;
+  }
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}

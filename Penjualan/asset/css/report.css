@@ -1,0 +1,507 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.page-sub {
+  font-size: 12px;
+  color: #d6d6d6;
+  margin-top: 3px;
+  font-family: "Inter", sans-serif;
+  margin-left: 0.4rem;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-red {
+  background: #d72437;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.btn-red:hover {
+  background: #b81e2e;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #888;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background: #1f1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  font-family: "Jakarta", sans-serif;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 11px;
+  color: #bbbbbb;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+select.fs,
+input.fs {
+  background: #111;
+  border: 0.5px solid #222;
+  border-radius: 7px;
+  padding: 7px 10px;
+  color: #fff;
+  font-size: 12px;
+  outline: none;
+}
+
+select.fs:focus,
+input.fs:focus {
+  border-color: #e02020;
+}
+
+.filter-divider {
+  width: 0.5px;
+  height: 24px;
+  background: #222;
+}
+
+.filter-right {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+  font-family: "Jakarta", sans-serif;
+}
+
+.stat {
+  background: #1f1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #bbbbbb;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.stat-val {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.stat-val.red {
+  color: #d72437;
+}
+
+.stat-val.green {
+  color: #4ade80;
+}
+
+.stat-sub {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.up {
+  color: #4ade80;
+}
+
+.down {
+  color: #e02020;
+}
+
+.neutral {
+  color: #bbbbbb;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card {
+  background: #1f1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 18px;
+  font-family: "Jakarta", sans-serif;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #bbbbbb;
+}
+
+.badge {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.badge-gray {
+  background: #1e1e1e;
+  color: #555;
+}
+
+.chart-wrap {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.bar-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  min-height: 3px;
+}
+
+.bar-lbl {
+  font-size: 9px;
+  color: #8d8d8d;
+}
+
+.donut-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.donut-svg {
+  width: 110px;
+  height: 110px;
+}
+
+.legend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #1e1e1e;
+  font-size: 11px;
+}
+
+.legend-item:last-child {
+  border-bottom: none;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #888;
+}
+
+.legend-right {
+  font-weight: 500;
+  color: #bbbbbb;
+}
+
+.rank-product {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.rank-product thead tr {
+  border-bottom: 0.5px solid #333333;
+}
+
+.rank-product th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10px;
+  color: #bbbbbb;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.rank-product td {
+  padding: 10px 12px;
+  color: #aaa;
+  border-bottom: 0.5px solid #1a1a1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.rank-product tr:last-child td {
+  border-bottom: none;
+}
+
+.rank-product tr:hover td {
+  background: #1a1a1a;
+}
+
+.td-white {
+  color: #fff;
+  font-weight: 500;
+}
+
+.td-green {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.rank-badge {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 600;
+  background: #1e1e1e;
+  color: #555;
+}
+
+.gold {
+  background: #795a05;
+  color: #fab222;
+}
+
+.silver {
+  background: #646161;
+  color: #b4b4b4;
+}
+
+.bronze {
+  background: #220d03;
+  color: #cd7f32;
+}
+
+.stok-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 12px;
+  color: #444;
+}
+
+.page-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.pg-btn {
+  background: #1a1a1a;
+  border: 0.5px solid #222;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pg-btn:hover {
+  background: #222;
+  color: #fff;
+}
+.pg-btn.active {
+  background: #d72437;
+  color: #fff;
+  border-color: #e02020;
+}
+.pg-btn.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #333;
+  font-size: 13px;
+}
+/* Report Container */
+#sales-report-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  /* Reset positioning agar saat export tidak lari */
+  position: relative;
+  font-family: "Inter", sans-serif;
+}
+/* Header Laporan */
+.report-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+}
+.report-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #d72437;
+  letter-spacing: 1px;
+}
+.report-header p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+/* Ringkasan Statistik (Grid) */
+.total {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.total h2 {
+  background: #e2e0e0ef;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 0;
+  color: #444;
+  border-left: 4px solid #d72437;
+  font-weight: 600;
+}
+.total h2 span {
+  display: block;
+  font-size: 18px;
+  color: #111;
+  margin-top: 5px;
+}
+/* Styling Tabel */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.report-table th {
+  background-color: #e5e7e7;
+  color: #5f6368;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+}
+.report-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #c5c4c4;
+  font-size: 14px;
+  color: #3c4043;
+}
+.report-table tr:last-child td {
+  border-bottom: none;
+}
+.report-table table tr:hover {
+  background-color: #fcfcfc;
+}
+/* Badge untuk stok atau angka */
+.report-table .badge-report {
+  background: #bfd0ecde;
+  color: #1a73e8;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
